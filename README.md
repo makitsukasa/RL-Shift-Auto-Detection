@@ -1,3 +1,7 @@
+> **このリポジトリは更新を終了しました。**
+> 内容は全履歴ごと [Invariance-Testing-for-RL-Explanations](https://github.com/makitsukasa/Invariance-Testing-for-RL-Explanations) の `shift-selection/` に統合しました。今後の更新はそちらで行います。
+> 2 本の草稿は、1 本の論文に統合して再構成する予定です。
+
 # README.md(for 🤖 LLMs / AI Agents)
 
 このリポジトリは、実験運用・査読対応・原稿更新を分離して管理します。

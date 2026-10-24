@@ -70,11 +70,11 @@ Table 1: Summary of the three evaluation settings.
 
 ### 5.1 Q1: Does performance sensitivity track spurious-correlation strength?
 
-In GridWorld, `PerformanceCheck` maintains high detection in low-correlation regimes and degrades gradually as `p` increases. Across all 120 trials, it achieves `85/120` top-1 detections and `106/120` top-2 detections. SHAP achieves `14/120` top-1 and `21/120` top-2. Paired McNemar tests confirm that the gap is significant for both top-1 (`p = 8.38 x 10^-16`) and top-2 (`p = 2.04 x 10^-4`).
+In GridWorld, `PerformanceCheck` maintains high detection in strong-correlation regimes (small `p`) and degrades gradually as `p` increases and the correlation weakens. Across all 120 trials, it achieves `85/120` top-1 detections and `106/120` top-2 detections. SHAP achieves `14/120` top-1 and `21/120` top-2. Paired McNemar tests confirm that the gap is significant for both top-1 (`p = 8.38 x 10^-16`) and top-2 (`p = 2.04 x 10^-4`).
 
-This result supports the idea that direct intervention on candidate features can recover operational dependence even when attribution to output variance favors correlated non-spurious dimensions.
+This result supports the idea that direct intervention on candidate features can recover operational dependence even when attribution of the model output (mean absolute Shapley values of the Q-values) favors correlated non-spurious dimensions.
 
-![Figure 1: GridWorld comparison. `PerformanceCheck` maintains high detection in low-correlation regimes, while SHAP struggles to rank the spurious feature highly in the same setting.](experiments/results/exp016_shap_psweep_30seeds/results.png)
+![Figure 1: GridWorld comparison. `PerformanceCheck` maintains high detection in strong-correlation regimes (small `p`), while SHAP struggles to rank the spurious feature highly in the same setting.](experiments/results/exp016_shap_psweep_30seeds/results.png)
 
 ### 5.2 Q2: Can the method track dependence switches under IRM?
 
@@ -119,7 +119,7 @@ Our results also clarify how to interpret disagreement. In ColoredMNIST, disagre
 
 Our method depends on intervention quality. When candidate features are not spatially localized or otherwise isolable, it may be difficult to design interventions that destroy the target while preserving the rest of the input. High-dimensional settings also raise computational costs because a full scan scales roughly with the number of candidates times the number of evaluation samples. In such regimes, candidate pruning before intervention becomes useful, but this reintroduces dependence on the candidate generator.
 
-Our ColoredMNIST finding is specific to the aggregation rule used in this paper and should not be overgeneralized to SHAP as a whole. Our Waterbirds results are based on a frozen ResNet-18 setup with validation accuracy roughly between `0.759` and `0.822`; stronger backbones may change the absolute rates. Finally, the present paper validates the confirmation step, not a fully automated discovery-to-remediation system.
+Our ColoredMNIST finding is specific to the aggregation rule used in this paper and should not be overgeneralized to SHAP as a whole. Our Waterbirds results are based on a frozen ResNet-18 setup with validation accuracy roughly between `0.719` and `0.825`; stronger backbones may change the absolute rates. Finally, the present paper validates the confirmation step, not a fully automated discovery-to-remediation system.
 
 ## 8. Conclusion
 
